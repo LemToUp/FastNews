@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module"
+           version="2.5"
+           method="upgrade">
+	<name>Fast news</name>
+	<creationDate>June 1, 2016</creationDate>
+	<author>Dmitry Rumiantsev</author>
+	<license>GNU General Public License version 2, or later.</license>
+	<version>1.0.0</version>
+	<description>MOD_FASTNEWS_DESC</description>
+
+	<files>
+		<filename module="mod_fastnews">mod_fastnews.php</filename>
+		<filename>helper.php</filename>
+		<folder>tmpl</folder>
+		<folder>css</folder>
+		<folder>js</folder>
+	</files>
+
+	<languages>
+		<language tag="en-GB">language/en-GB/en-GB.mod_fastnews.ini</language>
+		<language tag="en-GB">language/en-GB/en-GB.mod_fastnews.sys.ini</language>
+	</languages>
+
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="position"
+				       type="list"
+				       default="1"
+				       label="MOD_FASTNEWS_POSITION_LABEL"
+				       description="MOD_FASTNEWS_POSITION_DESC">
+					<option value="0">Free</option>
+					<option value="1">Fixed top</option>
+				</field>
+
+				<field name="loadJquery"
+				       type="list"
+				       default="0"
+				       label="MOD_FASTNEWS_LOAD_JQUERY_LABEL"
+				       description="MOD_FASTNEWS_LOAD_JQUERY_DESC">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+
+			</fieldset>
+			<fieldset name="advancedOptions" label="MOD_FASTNEWS_ADVANCED_OPTIONS">
+				<field name="refresh"
+					   type="number"
+					   default="10"
+					   label="MOD_FASTNEWS_REFRESH_TIME_LABEL"
+					   description="MOD_FASTNEWS_REFRESH_TIME_DESC"
+					   size="40" >
+				</field>
+			</fieldset>
+		</fields>
+
+
+	</config>
+</extension>

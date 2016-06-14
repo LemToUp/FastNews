@@ -1,0 +1,55 @@
+#fastnews {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 30px;
+    background-color: #000000;
+    display: none;
+}
+#fastnews p {
+    margin: 5px 0;
+    padding: 0;
+}
+#fastnews a {
+    text-align: center;
+}
+#fastnews table {
+    width: 100%;
+}
+#fastnews .fastnews_left, #fastnews .fastnews_right {
+    padding: 0 10px;
+}
+#fastnews .fastnews_right a {
+    text-align: right;
+}
+#fastnews .fn_count {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    border: 2px solid white;
+
+    animation: colorchange 10s infinite ease-in-out;
+    -webkit-animation: colorchange 10s infinite ease-in-out;
+    background-color: red;
+}
+#fastnews .fn_count p {
+    text-align: center;
+    line-height: 7px;
+    font-weight: 600;
+    color: white;
+}
+
+@keyframes colorchange
+{
+    0%   {background: red;}
+    50%  {background: darkred;}
+    100% {background: red;}
+}
+
+@-webkit-keyframes colorchange /* Safari and Chrome - necessary duplicate */
+{
+    0%   {background: red;}
+    50%  {background: darkred;}
+    100% {background: red;}
+}
