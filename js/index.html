@@ -1,1 +1,37 @@
 <!DOCTYPE html><title></title>
+
+<script>
+    function refresh () {
+
+        request = {
+            'option' : 'com_ajax',
+            'module' : 'fastnews',
+            'cmd'    : action,
+            'format' : format
+        };
+        $.ajax({
+            type   : 'POST',
+            data   : request,
+            success: function (response) {
+                if(response.data){
+                    data = JSON.parse(response.data);
+                    if (data) {
+                        title = data['title'];
+                        //introtext = data['introtext'];
+                        url = data['url'];
+                        publish = '<a target="_blank" href="'+url+'"><h4>'+message_prefix+' '+title+'</h4></a>';
+                        $('#fastnews .fastnews_center').html(publish);
+                        $('#fastnews').slideDown('slow');
+                        //action = 'check';
+                        $( document ).trigger( 'fnGetEvent' );
+                    }
+                }},
+                error: function(response) {
+                    console.log(response);
+                }
+            });
+        return false;
+    }
+    });
+
+</script>

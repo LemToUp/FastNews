@@ -1,11 +1,11 @@
 <?php defined('_JEXEC') or die;
 
 /**
- *
  * File       mod_fastnews.php
  * Created    1/06/16
  * Author     Dmitry Rumiantsev | lemtoup@gmail.com
- * License    GNU General Public License version 2, or later.
+ * @copyright (C) 2016- Dmitry Rumiantsev
+ * @license GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
  */
 
 // Include the helper.
@@ -31,7 +31,7 @@ $js = "
 (function ($) {
 
 jQuery(document).ready(function(){
-	  var action  = 'check',
+	  var action  = 'get',
 		format = '$format',
 		message_prefix = '$message_prefix',
 		refreshTime = $refresh;
@@ -54,31 +54,17 @@ jQuery(document).ready(function(){
 			success: function (response) {
 			if(response.data){
 			data = JSON.parse(response.data);
-			switch (action) {
-				case 'check':
-					if (data['publish_up']) {
-						console.log(data);
-						if (parseInt(data['publish_up']) + parseInt(refreshTime) >= parseInt(data['time']) && parseInt(data['publish_up']) < parseInt(data['time'])) {
-							action = 'get';
-							refresh();
-						}
-					}							
-				break;
-				
-				case 'get':
-					title = data['title'];
-					//introtext = data['introtext'];
-					url = data['url'];
-					publish = '<a target=\"_blank\" href=\"'+url+'\"><h4>'+message_prefix+' '+title+'</h4></a>';
-					$('#fastnews .fastnews_center').html(publish);
-					$('#fastnews').slideDown('slow');
-					action = 'check';
-					$( document ).trigger( 'fnGetEvent' );
-				break;
-				}
+			if (data) {
+				title = data['title'];
+				//introtext = data['introtext'];
+				url = data['url'];
+				publish = '<a target=\"_blank\" href=\"'+url+'\"><h4>'+message_prefix+' '+title+'</h4></a>';
+				$('#fastnews .fastnews_center').html(publish);
+				$('#fastnews').slideDown('slow');
+				//action = 'check';
+				$( document ).trigger( 'fnGetEvent' );
 			}
-			
-			},
+		}},
 			error: function(response) {
 				console.log(response);
 	        }
