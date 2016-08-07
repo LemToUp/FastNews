@@ -4,18 +4,13 @@
  * File       mod_fastnews.php
  * Created    1/06/16
  * Author     Dmitry Rumiantsev | lemtoup@gmail.com
- * @copyright (C) 2016- Dmitry Rumiantsev
- * @license GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
+ * License    GNU General Public License version 2, or later.
  */
+
 
 class modFastnewsHelper {
 
 	protected $smt = '';
-
-	public function __construct()
-	{
-
-	}
 
 	public static function getAjax() {
 
@@ -42,12 +37,11 @@ class modFastnewsHelper {
 			$query = $db->getQuery(true);
 
 			$date = JFactory::getDate();
-			$pastDate = new JDate('now ' . $refresh . ' seconds');
+			$pastDate = new JDate('now - ' . $refresh . ' seconds');
 
 			$nowDate = $db->quote($date->toSql());
 			$pastDate = $db->quote($pastDate->toSql());
 			$nullDate = $db->quote($db->getNullDate());
-
 
 			switch ($cmd) {
 				case "get" :
@@ -60,10 +54,11 @@ class modFastnewsHelper {
 			}
 			$query->from('#__content AS a');
 
-			$query->where('( a.publish_up <= ' . $pastDate . ') ', 'AND');
-			$query->where('( a.publish_up > ' . $nowDate . ') ', 'AND');
+			$query->where('( a.publish_up > ' . $pastDate . ') ', 'AND');
+			$query->where('( a.publish_up <= ' . $nowDate . ') ', 'AND');
 			$query->where('( a.publish_down = '. $nullDate .' OR a.publish_down >= ' . $nowDate . ')');
 			$query->order($db->qn('publish_up').' DESC');
+			
 
 			$db->setQuery($query);
 			$item = $db->loadObject();

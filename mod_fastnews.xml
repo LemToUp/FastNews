@@ -5,8 +5,7 @@
 	<name>Fast news</name>
 	<creationDate>June 1, 2016</creationDate>
 	<author>Dmitry Rumiantsev</author>
-	<authorEmail>lemtoup@gmail.com</authorEmail>
-	<license>GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html</license>
+	<license>GNU General Public License version 2, or later.</license>
 	<version>1.0.0</version>
 	<description>MOD_FASTNEWS_DESC</description>
 
